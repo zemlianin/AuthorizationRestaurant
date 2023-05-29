@@ -23,10 +23,11 @@ namespace BisnessLogic.Controllers
 
         [HttpPost]
         [Route("MakeOrder"), Authorize]
-        public async Task<IActionResult> MakeOrder(OrderRequest request)
+        public async Task<ActionResult<Order>> MakeOrder(OrderRequest request)
         {
             var userInDb = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-            var order = new Order {
+            var order = new Order
+            {
                 User = userInDb,
                 CreatedDate = DateTime.UtcNow,
                 SpecialRequests = request.SpecialRequests,
@@ -34,11 +35,38 @@ namespace BisnessLogic.Controllers
                 Dish = request.Dish
             };
 
-                _context.Order.Add(order);
-                _context.SaveChanges();
-           
-            return Ok(_context.Order.Count().ToString());
+            var obj = _context.Order.Add(order);
+            _context.SaveChanges();
+
+            return Ok(new OrderResponse()
+            {
+                UserId = userInDb.Id,
+                Dish = order.Dish,
+                SpecialRequests = order.SpecialRequests,
+                Id = obj.Entity.Id
+            });
         }
+
+        [HttpGet]
+        [Route("GetOrder"), Authorize]
+        public async Task<ActionResult<OrderResponse>> GetOrder(int requestId)
+        {
+            var orderInDb = _context.Order.ToList().FirstOrDefault((ord) => ord.Id == requestId);
+            if(orderInDb == null)
+            {
+                return BadRequest("Order does not exist");
+            }
+
+            return Ok(new OrderResponse()
+            {
+                UserId = orderInDb.UserId,
+                Dish = orderInDb.Dish,
+                SpecialRequests = orderInDb.SpecialRequests,
+                Status= orderInDb.Status,
+                Id = orderInDb.Id
+            });
+        }
+
 
         [HttpPost]
         [Route("RunOrderProcessor"), Authorize]
@@ -48,7 +76,8 @@ namespace BisnessLogic.Controllers
             var context = new UsersContext();
             Task task = new Task(() =>
             {
-                while (true) {
+                while (true)
+                {
                     var orderInDb = context.Order.FirstOrDefault(u => u.Status == "Wait");
                     if (orderInDb != null)
                     {
