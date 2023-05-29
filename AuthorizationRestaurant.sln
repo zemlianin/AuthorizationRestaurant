@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationRestaurant", "AuthorizationRestaurant\AuthorizationRestaurant.csproj", "{AB72969B-BAFA-41C3-9907-9F1CD1B237F8}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3153F191-38C7-4462-A2D2-B61FA5B3772D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{BF2EC275-5626-4B30-9014-F77BBD566F92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dbscripts", "dbscripts", "{A2D42C10-B2C3-4E23-BF21-CB6F96EBCA31}"
+	ProjectSection(SolutionItems) = preProject
+		seed.sql = seed.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BisnessLogic", "BisnessLogic\BisnessLogic.csproj", "{A2620460-95BD-40EC-991A-50AB4F78B424}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB72969B-BAFA-41C3-9907-9F1CD1B237F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB72969B-BAFA-41C3-9907-9F1CD1B237F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB72969B-BAFA-41C3-9907-9F1CD1B237F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB72969B-BAFA-41C3-9907-9F1CD1B237F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3153F191-38C7-4462-A2D2-B61FA5B3772D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3153F191-38C7-4462-A2D2-B61FA5B3772D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3153F191-38C7-4462-A2D2-B61FA5B3772D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2620460-95BD-40EC-991A-50AB4F78B424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2620460-95BD-40EC-991A-50AB4F78B424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2620460-95BD-40EC-991A-50AB4F78B424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2620460-95BD-40EC-991A-50AB4F78B424}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A2D42C10-B2C3-4E23-BF21-CB6F96EBCA31} = {BF2EC275-5626-4B30-9014-F77BBD566F92}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E988D52-9826-4592-A7BC-D6D7E4D1FC23}
+	EndGlobalSection
+EndGlobal

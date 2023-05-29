@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=app
+      - POSTGRES_DB=mydbname2
+    volumes:
+      - ./volumes/data/db:/var/lib/postgresql/data
+      - ./dbscripts:/docker-entrypoint-initdb.d
+    ports:
+       - 8080:5432
+    restart: always
