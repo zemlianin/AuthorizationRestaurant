@@ -12,6 +12,7 @@
         {
         }
         public DbSet<Order> Order { get; set; } = null!;
+        public DbSet<Menu> Menu { get; set; } = null!;
 
         public UsersContext(DbContextOptions<UsersContext> options)
             : base(options)

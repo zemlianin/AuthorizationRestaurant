@@ -99,6 +99,29 @@ namespace AuthorizationRestaurant.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("BisnessLogic.Models.Menu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Access")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Dish")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Menu");
+                });
+
             modelBuilder.Entity("BisnessLogic.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -126,6 +149,7 @@ namespace AuthorizationRestaurant.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -205,7 +229,9 @@ namespace AuthorizationRestaurant.Migrations
                 {
                     b.HasOne("AuthorizationRestaurant.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

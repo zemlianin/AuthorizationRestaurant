@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections;
+using System.Linq;
 
 namespace BisnessLogic.Controllers
 {
@@ -14,8 +16,8 @@ namespace BisnessLogic.Controllers
     public class OrderController : ControllerBase
     {
         private readonly UsersContext _context;
-        private readonly ILogger<WeatherForecastController> _logger;
-        public OrderController(UsersContext context, ILogger<WeatherForecastController> logger)
+        private readonly ILogger<OrderController> _logger;
+        public OrderController(UsersContext context, ILogger<OrderController> logger)
         {
             _logger = logger;
             _context = context;
@@ -65,6 +67,16 @@ namespace BisnessLogic.Controllers
                 Status= orderInDb.Status,
                 Id = orderInDb.Id
             });
+        }
+
+
+        [HttpGet]
+        [Route("GetMenu")]
+        public async Task<ActionResult<IEnumerable>> GetMenu()
+        {
+            var menu = _context.Menu.ToList();
+
+            return Ok(menu);
         }
 
 
