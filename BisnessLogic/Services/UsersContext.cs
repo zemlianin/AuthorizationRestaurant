@@ -1,6 +1,7 @@
 ﻿namespace AuthorizationRestaurant.Services
 {
     using AuthorizationRestaurant.Models;
+    using BisnessLogic.Models;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@
         public UsersContext()
         {
         }
+        public DbSet<Order> Order { get; set; } = null!;
 
         public UsersContext(DbContextOptions<UsersContext> options)
             : base(options)
@@ -17,7 +19,6 @@
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            // It would be a good idea to move the connection string to user secrets
             options.UseNpgsql("Server=localhost;Port=8080;User Id=app;Password=app;Database=mydbname2;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
